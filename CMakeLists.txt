@@ -5,6 +5,8 @@ set(CMAKE_CXX_STANDARD 17)
 
 find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
-add_executable(Laboratorio_Programmazione main.cpp)
+add_executable(Laboratorio_Programmazione main.cpp
+        FileMover_Engine.cpp
+        FileMover_Engine.h)
 
 target_link_libraries(Laboratorio_Programmazione Qt6::Widgets)
