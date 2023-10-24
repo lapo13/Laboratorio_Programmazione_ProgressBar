@@ -4,15 +4,24 @@
 #include <QTimer>
 #include <QFile>
 #include <QDir>
+#include <QVBoxLayout>
 
 int main(int argc, char *argv[]) {
     QApplication app(argc, argv);
 
     QWidget window;
+    window.resize(300, 50);
     window.setWindowTitle("File Transfer App");
+
+    QVBoxLayout *layout = new QVBoxLayout(&window);
 
     QProgressBar progressBar(&window);
     progressBar.setRange(0, 100); // Imposta il valore massimo
+    progressBar.setGeometry(10, 10, 280, 30); // Imposta la posizione e le dimensioni
+
+    layout->addWidget(&progressBar);
+    window.setLayout(layout);
+
 
     QTimer timer;
     int value = 0;
