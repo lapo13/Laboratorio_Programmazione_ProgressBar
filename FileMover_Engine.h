@@ -16,7 +16,7 @@ private:
     QString sourcePath;
     QString fileName;
     QString destinationPath;
-    QDir sourceFile;
+    QFile sourceFile;
 
 public:
     FileMover() = default;
