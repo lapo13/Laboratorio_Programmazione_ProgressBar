@@ -7,36 +7,27 @@
 
 #endif //LABORATORIO_PROGRAMMAZIONE_FILEMOVER_ENGINE_H
 #include <QApplication>
-#include <QDir>
 #include <QFile>
 #include <iostream>
 
-class FileMover {
-private:
-    QString sourcePath;
-    QString fileName;
-    QString destinationPath;
-    QFile sourceFile;
-
+class FileMover{
 public:
-    FileMover() = default;
-    ~FileMover() = default;
+    virtual void Move() = 0;
+    virtual void setSourcePath(QString path) = 0;
+    virtual void setDestinationPath(QString path) = 0;
+    virtual void setFiles(QString file) = 0;
 
-    const QString &getSourcePath() const {
-        return sourcePath;
-    }
+protected:
+    QString sourcePath;
+    QString destinationPath;
+    std::list<QString> files;
+};
 
-    void setSourcePath(const QString &sourcePath) {
-        FileMover::sourcePath = sourcePath;
-    }
-
-    const QString &getDestinationPath() const {
-        return destinationPath;
-    }
-
-    void setDestinationPath(const QString &destinationPath) {
-        FileMover::destinationPath = destinationPath;
-    }
-
-    void Move();
+class Engine: public FileMover{
+public:
+    Engine() = default;
+    void Move() override;
+    void setSourcePath(QString path) override;
+    void setDestinationPath(QString path) override;
+    void setFiles(QString file) override;
 };

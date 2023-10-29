@@ -4,13 +4,23 @@
 
 #include "FileMover_Engine.h"
 
-void FileMover::Move() {
-    sourceFile.setFileName(sourcePath);
-    sourceFile.copy(destinationPath);
-    if (sourceFile.copy(destinationPath)) {
-        // Il file è stato copiato con successo
-        std::cout << "File copiato con successo" << std::endl;
-    } else {
-        // Gestisci errori di copia
+void Engine::Move() {
+    int i = 0;
+    for (auto &file : files) {
+        QFile::rename(sourcePath + "/" + file, destinationPath + "/" + file);
+        i++;
+        std::cout << "File " << i << " of " << files.size() << " moved" << std::endl;
     }
+}
+
+void Engine::setSourcePath(QString path) {
+    sourcePath = path;
+}
+
+void Engine::setDestinationPath(QString path) {
+    destinationPath = path;
+}
+
+void Engine::setFiles(QString file) {
+    files.push_back(file);
 }
