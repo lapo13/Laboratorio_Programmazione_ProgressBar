@@ -3,9 +3,8 @@
 
 int main(){
     FileMover *filemove = new Engine();
-    filemove->setSourcePath("/Users/lapotinacci/Downloads");
-    filemove->setDestinationPath("/Users/lapotinacci/Desktop");
-    filemove->setFiles("11.pdf");
+    filemove->setFiles("/Users/lapotinacci/Downloads/11.pdf");
+    filemove->setDestinationPath("/Users/lapotinacci/Desktop/");
     filemove->Move();
     return 0;
 }

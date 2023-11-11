@@ -5,22 +5,18 @@
 #include "FileMover_Engine.h"
 
 void Engine::Move() {
-    int i = 0;
     for (auto &file : files) {
-        QFile::rename(sourcePath + "/" + file, destinationPath + "/" + file);
-        i++;
-        std::cout << "File " << i << " of " << files.size() << " moved" << std::endl;
+        std::cout<< file->getName() << std::endl;
+        file->rename(destinationPath);
+        std::cout<< file->getName() << std::endl;
     }
 }
 
-void Engine::setSourcePath(QString path) {
-    sourcePath = path;
-}
-
-void Engine::setDestinationPath(QString path) {
+void Engine::setDestinationPath(std::string path) {
     destinationPath = path;
 }
 
-void Engine::setFiles(QString file) {
+void Engine::setFiles(std::string name) {
+    File* file = new file_obj(name);
     files.push_back(file);
 }

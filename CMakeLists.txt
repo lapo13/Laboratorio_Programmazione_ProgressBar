@@ -7,6 +7,9 @@ find_package(Qt6 COMPONENTS Widgets REQUIRED)
 
 add_executable(Laboratorio_Programmazione main.cpp
         FileMover_Engine.cpp
-        FileMover_Engine.h)
+        FileMover_Engine.h
+        Observer_int.h
+        file_obj.cpp
+        file_obj.h)
 
 target_link_libraries(Laboratorio_Programmazione Qt6::Widgets)
