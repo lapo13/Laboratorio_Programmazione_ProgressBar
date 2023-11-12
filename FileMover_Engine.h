@@ -7,9 +7,8 @@
 
 #endif //LABORATORIO_PROGRAMMAZIONE_FILEMOVER_ENGINE_H
 
-#include <iostream>
 #include "file_obj.h"
-#include <list>
+#include "ProgressBar.h"
 
 class FileMover{
 public:
@@ -18,13 +17,19 @@ public:
     virtual void setFiles(std::string file) = 0;
 
     virtual ~FileMover() = default;
-
-protected:
-    std::string  destinationPath;
-    std::list<File*> files;
 };
 
-class Engine: public FileMover{
+class Subject : public FileMover{
+public:
+    virtual void notify(int val, int range) = 0;
+    virtual void subscribe(Progressbar *o) = 0;
+    virtual void unsubscribe(Progressbar *o) = 0;
+
+protected:
+    std::list<Progressbar*> observers;
+};
+
+class Engine: public Subject{
 public:
     Engine() = default;
 
@@ -32,5 +37,15 @@ public:
     void setDestinationPath(std::string path) override;
     void setFiles(std::string file) override;
 
+    void notify(int val, int range) override;
+    void subscribe(Progressbar *o) override;
+    void unsubscribe(Progressbar *o) override;
+
     ~Engine() override = default;
+
+private:
+    std::string  destinationPath;
+    std::list<File*> files;
+    int max;
+    int progress;
 };
