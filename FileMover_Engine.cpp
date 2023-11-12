@@ -3,13 +3,16 @@
 //
 
 #include "FileMover_Engine.h"
+#include <chrono>
+#include <thread>
 
 void Engine::Move() {
-    max = files.size();
-    for (auto &file : files) {
+    max = 10;
+    for (int i = 0; i <= max; ++i) {
         progress++;
-        file->rename(destinationPath);
+        /*file->rename(destinationPath);*/
         notify(progress, max);
+        std::this_thread::sleep_for(std::chrono::milliseconds (1000));
     }
 }
 
